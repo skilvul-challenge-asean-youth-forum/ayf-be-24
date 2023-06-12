@@ -1,4 +1,7 @@
 'use strict';
+const Comment = require('./comment');
+const Profil_details = require('./profil_details');
+
 const {
   Model
 } = require('sequelize');
@@ -10,14 +13,14 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      User.hasMany(models.Comment);
+      User.hasOne(models.Profile_details);
     }
   }
   User.init({
     username: DataTypes.STRING,
     password: DataTypes.TEXT,
-    email: DataTypes.STRING,
-    id_profil: DataTypes.INTEGER
+    email: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'User',

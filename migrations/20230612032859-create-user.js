@@ -18,9 +18,6 @@ module.exports = {
       email: {
         type: Sequelize.STRING
       },
-      id_profil: {
-        type: Sequelize.INTEGER
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

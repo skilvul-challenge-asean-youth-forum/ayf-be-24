@@ -1,19 +1,25 @@
 'use strict';
+const User = require('./user'); 
+const Forum = require('./forum'); 
+const News = require('./news'); 
+
 const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class comment extends Model {
+  class Comment extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Comment.belongsTo(models.User);
+      Comment.belongsTo(models.Forum);
+      Comment.belongsTo(models.News);
     }
   }
-  comment.init({
+  Comment.init({
     content: DataTypes.STRING,
     position: DataTypes.STRING,
     id_user: DataTypes.INTEGER,
@@ -21,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
     id_news: DataTypes.INTEGER
   }, {
     sequelize,
-    modelName: 'comment',
+    modelName: 'Comment',
   });
-  return comment;
+  return Comment;
 };
